@@ -1,3 +1,4 @@
+document.head = document.head || document.getElementsByTagName('head')[0];
 const _e = {
   copyText(text) {
     navigator.clipboard.writeText(text);
@@ -141,7 +142,8 @@ const _e = {
 	getHash() {return window.location.hash},
 	setHash(url) {window.location.hash=url},
 	pushState(url) {history.pushState(null,null,url)},
-	addKeybind(key, callback) { window.addEventListener('keyup', (e) => { if(e.keyCode == key){e.preventDefault();callback()} }) }
+	addKeybind(key, callback) { window.addEventListener('keyup', (e) => { if(e.keyCode == key){e.preventDefault();callback()} }) },
+	changeFavicon(src) { var link = document.createElement('link'), oldLink = document.getElementById('dynamic-favicon'); link.id = 'dynamic-favicon'; link.rel = 'shortcut icon'; link.href = src; if (oldLink) { document.head.removeChild(oldLink); } document.head.appendChild(link); }
 };
 
 const E = _e;

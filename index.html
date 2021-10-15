@@ -5,299 +5,56 @@
     <meta name="viewport" content="width=device-width" />
     <title>essentials.js</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp">
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-flash.min.css">
+
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-      }
-      h1 {
-        font-size: 40px;
-      }
-      h2 {
-        font-size: 30px;
-      }
-      h3 {
-        font-size: 25px;
-      }
-      h4 {
-        font-size: 20px;
-      }
-      p {
-        line-height: 25px;
-      }
-      hr {
-        border: 0;
-        height: 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      }
-      button,
-      .btn {
-        text-decoration: none;
-        position: relative;
-        display: inline-block;
-        box-sizing: border-box;
-        border: solid 1px;
-        border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.24);
-        border-radius: 4px;
-        padding: 0 16px;
-        min-width: 64px;
-        vertical-align: middle;
-        text-align: center;
-        text-overflow: ellipsis;
-        text-transform: uppercase;
-        color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
-        background-color: transparent;
-        font-family: var(
-          --pure-material-font,
-          "Roboto",
-          "Segoe UI",
-          BlinkMacSystemFont,
-          system-ui,
-          -apple-system
-        );
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 34px;
-        overflow: hidden;
-        outline: none;
-        cursor: pointer;
-      }
-      code {
-        white-space: pre;
-      }
-      button::-moz-focus-inner,
-      .btn::-moz-focus-inner {
-        border: none;
-      }
-      code {
-        margin-top: 10px;
-        background: rgba(0, 0, 0, 0.03);
-        border-radius: 3px;
-        overflow-x: auto;
-        padding: 10px;
-        display: block;
-      }
-      button::before,
-      .btn:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background-color: currentColor;
-        opacity: 0;
-        transition: opacity 0.2s;
-      }
-      button:hover::before,
-      .btn:hover::before {
-        opacity: 0.04;
-      }
-      button:focus::before,
-      .btn:focus::before {
-        opacity: 0.12;
-      }
-      button:hover:focus::before,
-      .btn:hover:focus::before {
-        opacity: 0.16;
-      }
-      button:active::after,
-      .btn:active::after {
-        opacity: 0.16;
-        transform: translate(-50%, -50%) scale(0);
-        transition: transform 0s;
-      }
-      button:disabled,
-      .btn:disabled {
-        color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
-        background-color: transparent;
-        cursor: initial;
-      }
-      button:disabled::before,
-      .btn:disabled::before {
-        opacity: 0;
-      }
-      button:disabled::after,
-      .btn:disabled::after {
-        opacity: 0;
-      }
-
-      .prettyprint {
-        background: #fff;
-        font-family: inherit !important;
-        border: 0 !important;
-      }
-      .pln {
-        color: #4d4d4c !important;
-      }
-      ol.linenums {
-        margin-top: 0;
-        margin-bottom: 0;
-        color: #8e908c;
-      }
-      li.L0,
-      li.L1,
-      li.L2,
-      li.L3,
-      li.L4,
-      li.L5,
-      li.L6,
-      li.L7,
-      li.L8,
-      li.L9 {
-        padding-left: 1em;
-        background-color: #fff;
-        list-style-type: decimal;
-      }
-      .str {
-        color: #718c00 !important;
-      }
-      .kwd {
-        color: #8959a8 !important;
-      }
-      .com {
-        color: #8e908c !important;
-      }
-      .typ {
-        color: #4271ae !important;
-      }
-      .lit {
-        color: #f5871f !important;
-      }
-      .pun {
-        color: #4d4d4c !important;
-      }
-      .opn {
-        color: #4d4d4c !important;
-      }
-      .clo {
-        color: #4d4d4c !important;
-      }
-      .tag {
-        color: #c82829 !important;
-      }
-      .atn {
-        color: #f5871f !important;
-      }
-      .atv {
-        color: #3e999f !important;
-      }
-      .dec {
-        color: #f5871f !important;
-      }
-      .var {
-        color: #c82829 !important;
-      }
-      .fun {
-        color: #4271ae !important;
-      }
-      .container {
-        padding: 20px;
-      }
-      b {
-        font-weight: bold;
-      }
-      input {
-        color: gray;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid #eee;
-        padding: 0 10px;
-        line-height: 40px;
-        outline: 0;
-        width: 200px;
-        border-radius: 3px;
-      }
-      .dark {
-        color: white;
-        background: #212121;
-      }
-      .dark code {
-        background: rgba(255, 255, 255, 0.9);
-      }
-      * {
-        box-sizing: border-box;
-      }
-      .dark button {
-        border-color: #303030 !important;
-      }
-      #Settings {
-        transition: all 0.2s;
-        opacity: 0;
-      }
-      nav ul li {
-        display: inline-block;
-        color: black;
-        margin: 0;
-        padding: 0;
-      }
-      nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-      }
-      nav a {
-        color: gray;
-        text-decoration: none;
-        padding: 10px;
-        border-radius: 5px;
-        display: block;
-      }
-      nav a:hover {
-        background: rgba(200, 200, 200, 0.1);
-      }
-      nav {
-        z-index: 999;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 10px;
-        padding: 15px;
-        width: 100%;
-        transition: all 0.2s;
-      }
-      @media only screen and (max-width: 992px) {
-        .header {
-          font-size: 50px !important;
-        }
-      }
-    </style>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/css/materialize.min.css">
+		<style>pre,code {overflow-x:scroll;padding: 10px;border:0!important} nav a {transition: all .2s !important}nav {z-index:999;position: fixed;top: 0;left: 0}.waves-effect:not(.waves-light, ._darkTheme .waves-effect) .waves-ripple {
+  background: rgba(0, 0, 0, .2) !important
+}
+body {padding-top:65px;}
+.waves-ripple {
+  transition: transform .8s cubic-bezier(0.4, 0, 0.2, 1), opacity .4s !important
+}</style>
   </head>
   <body>
-    <nav id="nav">
-      <ul style="float: right">
-        <input
-          onkeyup="document.getElementById('e').scrollIntoView()"
-          type="text"
-          class="search"
-          id="search"
-          placeholder="Search..."
-        />
-        <li><a href="#"></a></li>
-      </ul>
-      <ul>
-        <li><a href="#" id="Settings">essentials.js</a></li>
-      </ul>
-    </nav>
+	<nav id="nav" class="blue-grey darken-3">
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" onkeyup="document.getElementById('e').scrollIntoView()" type="search" required>
+          <label class="label-icon" style="position:fixed;right:0;" for="search">
+						<i class="material-icons">search</i>
+					</label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
     <center>
       <br />
       <br />
       <br />
-      <h1
+			
+      <h3
         class="header"
         style="
           margin-bottom: 10px;
-          font-size: 150px;
+          font-size: 100px;
           background: -webkit-linear-gradient(30deg, #ff416c, #ff4b2b);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         "
       >
         essentials.js
-      </h1>
-      <h2>The JS Essentials library! No external libraries required!</h2>
+      </h3>
+			<br>
+      <h5>essentials.js has a bunch of cool and useful JavaScript shorthands. </h5>
+			<br>
       <a class="btn" href="essentials.js" download>Download</a>
       <br />
       <br />
@@ -306,7 +63,7 @@
     </center>
     <div class="container">
       <hr />
-      <h3>Some stuff you should know...</h3>
+      <h6>Some stuff you should know...</h6>
       <p>
         &bull; If you use Internet Explorer, go get a life. No one uses it, and
         not all of our functions are supported in IE. However, this library is
@@ -315,346 +72,45 @@
       </p>
       <p>&bull; The shorthand for the prefix is "E" (With a capital E)</p>
       <hr />
-      <h3 id="e">All examples</h3>
-      <div class="section">
-        <h3>Copy To Clipboard</h3>
-        <p>Copies text to your clipboard</p>
-        <button onclick="_e.copyText('Hello world!');alert('Copied!')">
-          Copy
-        </button>
-        <code class="prettyprint">
-          <pre> _e.copyText("Hello world!") </pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Capitalize String</h3>
-        <p>Capitalizes the first letter in a string</p>
-        <button onclick="alert(_e.capitalizeString('hello world!'))">
-          Try me
-        </button>
-        <code class="prettyprint">
-          <pre> alert(_e.capitalizeString('hello world!')) </pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Clear Cookies</h3>
-        <p>Clears all the cookies in a web page</p>
-        <button onclick="_e.clearCookies()">Try me</button>
-        <code class="prettyprint"><pre>_e.clearCookies() </pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Get random HEX color</h3>
-        <p>Returns a random hex color</p>
-        <div id="d1" style="padding: 10px">
-          Click the button below to make me a random color
-        </div>
-        <br />
-        <button
-          onclick="document.getElementById('d1').style.background = (_e.getRandomHex())"
-        >
-          Try me
-        </button>
-        <code class="prettyprint"><pre>alert(_e.getRandomHex()) </pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Remove Duplicates</h3>
-        <p>Returns an array without duplicates</p>
-        <div id="d2" style="padding: 10px">
-          Click the button below to remove duplicates from the following array:
-          <br />
-          [1,1,1,1,2,4,5,6,2,34,5,5]
-        </div>
-        <br />
-        <button
-          onclick="document.getElementById('d2').innerHTML = `[${_e.removeDuplicates([1,1,1,1,2,4,5,6,2,34,5,5])}]`"
-        >
-          Try me
-        </button>
-        <code class="prettyprint">
-          <pre>alert(_e.removeDuplicates([1,1,1,1,2,4,5,6,2,34,5,5])) </pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>GET Query Parameters from URL</h3>
-        <p>
-          Click the button below to remove duplicates from the following array:
-          <b> https://smartlist.ga/?demo=1</b>
-        </p>
-        <br />
-        <button
-          onclick="alert( JSON.stringify(_e.getUrlParameters('https://smartlist.ga/?demo=1')) )"
-        >
-          Try me
-        </button>
-        <code class="prettyprint">
-          <pre>
-alert(JSON.stringify(_e.getUrlParameters('https://smartlist.ga/?demo=1')))</pre
-          >
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Even or Odd?</h3>
-        <p>Returns true if a number is even</p>
-        <br />
-        <button onclick="alert( _e.isEven(1) )">Try me</button>
-        <code class="prettyprint"><pre>_e.isEven(1)</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Average</h3>
-        <p>Get the average number of a set of numbers</p>
-        <br />
-        <button onclick="alert( _e.getAverage(1,2,4,4,6,2,35,69,84) )">
-          Try me
-        </button>
-        <code class="prettyprint">
-          <pre>alert( _e.getAverage(1,2,4,4,6,2,35,69,84) )</pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Reverse</h3>
-        <p>Return a reversed string</p>
-        <br />
-        <button onclick="alert( _e.reverse('Hi there!') )">Try me</button>
-        <code class="prettyprint">
-          <pre>alert( _e.reverse('Hi there!') )</pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Empty array?</h3>
-        <p>Returns true if an array is not empty</p>
-        <br />
-        <button onclick="alert( _e.isNotEmpty([1,2,3]) )">Try me</button>
-        <code class="prettyprint">
-          <pre>alert( _e.isNotEmpty([1,2,4]) )</pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Get selected text</h3>
-        <p>
-          Get the text the user has select using inbuilt getSelectionproperty.
-          Try selecting some text on this page, and then click the button below
-        </p>
-        <br />
-        <button onclick="alert( _e.getSelectedText() )">Try me</button>
-        <code class="prettyprint">
-          <pre>alert( _e.getSelectedText()) </pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Randomize</h3>
-        <p>Randomize an array</p>
-        <div id="d3"></div>
-        <br />
-        <button
-          onclick="document.getElementById('d3').innerHTML = ( _e.shuffleArray([1,2,3,4]) )"
-        >
-          Try me
-        </button>
-        <code class="prettyprint">
-          <pre>alert( _e.shuffleArray([1,2,3,4]) ) </pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Detect Dark Mode</h3>
-        <p>Check if a user’s device is in dark mode with the following code.</p>
-        <div id="d4"></div>
-        <br />
-        <button
-          onclick="document.getElementById('d4').innerHTML = ( _e.isDarkMode().toString() )"
-        >
-          Try me
-        </button>
-        <code class="prettyprint"><pre>alert( _e.isDarkMode() ) </pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Detect Dark Mode</h3>
-        <p>Check if a user’s device is in dark mode with the following code.</p>
-        <div id="d4"></div>
-        <br />
-        <button
-          onclick="document.getElementById('d4').innerHTML = ( _e.isDarkMode().toString() )"
-        >
-          Try me
-        </button>
-        <code class="prettyprint"><pre>alert( _e.isDarkMode() ) </pre></code>
-      </div>
-
-      <div class="section">
-        <h3>RGB to HEX</h3>
-        <p>Convert RGB to HEX. Demo is <b>rgb(0, 51, 255)</b></p>
-        <div id="d5"></div>
-        <br />
-        <button
-          onclick="document.getElementById('d5').innerHTML = ( _e.rgbToHex(0, 51, 255).toString() )"
-        >
-          Try me
-        </button>
-        <code class="prettyprint">
-          <pre>alert( _e.rgbToHex(0, 51, 255) ) </pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Hide elements</h3>
-        <p>Hide all specified elements on a page</p>
-        <div id="d6">Click on the button below to hide me</div>
-        <br />
-        <button onclick="_e.hideElements('#d6')">Try me</button>
-        <code class="prettyprint"><pre>_e.hideElements('#d6')</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Show elements</h3>
-        <p>
-          Show all specified elements on a page. Click on the button below to
-          show something
-        </p>
-        <div id="d7" style="display: none">Peek-a-boo!</div>
-        <br />
-        <button onclick="_e.showElements('#d7')">Try me</button>
-        <code class="prettyprint"><pre>_e.showElements('#d7')</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Relative or Absolute?</h3>
-        <p>Checks if a file is relative or absolute</p>
-        <code class="prettyprint">
-          <pre>
-alert(_e.isRelative('/foo/bar/baz')); // false
-alert(_e.isRelative('C:\\foo\\bar\\baz')); // false
-alert(_e.isRelative('foo/bar/baz.txt')); // true
-alert(_e.isRelative('foo.md');) // true		
-</pre
-          >
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Lowercase the first letter of a string</h3>
-        <p>Makes the first letter of a string lowercase</p>
-        <button onclick="alert(_e.lowercaseString('Hello world'))">
-          Try me!
-        </button>
-        <code class="prettyprint">
-          <pre>_e.lowercaseString('Hello world')</pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>AM/PM</h3>
-        <p>Converts to AM/PM and also makes it 12-hour format</p>
-        <button onclick="alert(_e.suffixAmPm(24))">Try me!</button>
-        <code class="prettyprint"><pre>_e.suffixAmPm(24)</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Difference between days</h3>
-        <p>Returns the number of days between two dates</p>
-        <button
-          onclick="alert(_e.diffDays(new Date('2014-12-19'), new Date('2020-01-01')))"
-        >
-          Try me!
-        </button>
-        <code class="prettyprint">
-          <pre>
-alert(_e.diffDays(new Date('2014-12-19'), new Date('2020-01-01')))</pre
-          >
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Generate Random IP</h3>
-        <p>Generates a random IPV4 address</p>
-        <button onclick="alert(_e.generateRandomIP())">Try me!</button>
-        <code class="prettyprint"><pre>alert(_e.generateRandomIP())</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Coinflip</h3>
-        <p>Returns randomly true or false</p>
-        <button onclick="alert(_e.getRandomBoolean().toString())">
-          Try me!
-        </button>
-        <code class="prettyprint">
-          <pre>alert(_e.getRandomBoolean().toString())</pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Weekend</h3>
-        <p>Returns if date is a weekend!</p>
-        <button onclick="alert(_e.isWeekend(new Date(2021, 4, 14)))">
-          Try me!
-        </button>
-        <code class="prettyprint">
-          <pre>alert(_e.isWeekend(new Date(2021, 4, 14)))</pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Scroll to top</h3>
-        <p>Scroll to the top of the page</p>
-        <button onclick="_e.scrollToTop()">Try me!</button>
-        <code class="prettyprint"><pre>_e.scrollToTop();</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>UUID</h3>
-        <p>Get a random UUID (V4)</p>
-        <div id="d8"></div>
-        <button
-          onclick="document.getElementById('d8').innerHTML = _e.getUuidv4()"
-        >
-          Try me!
-        </button>
-        <code class="prettyprint">
-          <pre>document.getElementById('d8').innerHTML = _e.getUuidv4()</pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>Is the tab in view?</h3>
-        <p>Return if user is on tab</p>
-        <button onclick="alert(_e.isTabInView())">Try me!</button>
-        <code class="prettyprint"><pre>_e.isTabInView();</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Apple devices</h3>
-        <p>Returns true if you're on an apple device</p>
-        <button onclick="alert(_e.isAppleDevice())">Try me!</button>
-        <code class="prettyprint"><pre>_e.isAppleDevice();</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Mobile devices</h3>
-        <p>Returns true if you're on a mobile device</p>
-        <button onclick="alert(_e.isMobileDevice())">Try me!</button>
-        <code class="prettyprint"><pre>_e.isMobileDevice();</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>Get Type of variable</h3>
-        <p>
-          People sometimes use libraries to find the actual type of something in
-          JavaScript, this small trick can save your time (and code size).
-        </p>
-        <code class="prettyprint">
-          <pre>
-console.log(_e.getTypeOf(''));
+      <h6 id="e">All examples</h6>
+			<ul class="collapsible" id="main"></ul>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
+    <script src="essentials.js"></script>
+    <script>
+			// Object.keys(_e).forEach(function(key) {
+				// console.log(_e[key])
+			// });
+			const data = [
+				{"name": "copyText", "description": "Copies text to your clipboard", "example": `_e.copyText("Hello world!")`},
+				{"name": "capitalizeString", "description": "Capitalizes the first letter in a string", "example": `_e.capitalizeString("Hello world!")`},
+				{"name": "clearCookies", "description": "Clears the cookies of a web page", "example": `_e.clearCookies()`},
+				{"name": "getRandomHex", "description": "Clears the cookies of a web page", "example": `_e.getRandomHex()`},
+				{"name": "removeDuplicates", "description": "Returns the same array, without duplicates", "example": `alert(_e.removeDuplicates([1,1,1,1,2,4,5,6,2,34,5,5]))`},
+				{"name": "getUrlParameters", "description": "Returns an object of url parameters", "example": `alert(_e.getUrlParameters())`},
+				{"name": "isEven", "description": "Returns true if a number is even", "example": `alert(_e.isEven(1))`},
+				{"name": "getAverage", "description": "Get average of numbers", "example": `alert(_e.isEven(1,3,5,6,2,5,6,4,13,3425,23452,836,7364,247))`},
+				{"name": "reverse", "description": "Reverses a string", "example": `alert(_e.isEven(1))`},
+				{"name": "isNotEmpty", "description": "Returns true if an array is not empty", "example": `alert(_e.isNotEmpty([1,2,3]))`},
+				{"name": "getSelectedText", "description": "Get selected text in a web page", "example": `alert(_e.getSelectedText())`},
+				{"name": "shuffleArray", "description": "Suffles an array", "example": `alert(_e.shuffleArray([1,2,3]))`},
+				{"name": "isDarkMode", "description": "Detects whether the user has dark mode enabled on their device", "example": `alert(_e.isDarkMode())`},
+				{"name": "rgbToHex", "description": "Converts RGB to a hex value", "example": `alert(_e.rgbToHex(255,255,255))`},
+				{"name": "hideElements", "description": "Hides elements on a web page", "example": `alert(_e.hideElements('*'))`},
+				{"name": "showElements", "description": "Shows elements on a web page", "example": `alert(_e.showElements('*'))`},
+				{"name": "isRelative", "description": "Detects if a file path is relative or absolute", "example": `alert(_e.isRelative('/home/path/to/my/file'))`},
+				{"name": "addAmPm", "description": "Converts to 12 hour format and adds AM/PM", "example": `alert(_e.addAmPm(24))`},
+				{"name": "diffDays", "description": "Calculates difference between 2 days", "example": `alert(_e.diffDays(new Date('2014-12-19'), new Date('2020-01-01')))`},
+				{"name": "generateRandomIP", "description": "Generates a random IPV4 address", "example": `alert(_e.generateRandomIP())`},
+				{"name": "getRandomBoolean", "description": "Randomly returns true/false", "example": `alert(_e.getRandomBoolean().toString())`},
+				{"name": "isWeekend", "description": "Detects if a date is a weekend", "example": `alert(_e.isWeekend(new Date(2021, 4, 14)))`},
+				{"name": "scrollToTop", "description": "Scrolls to the top of the page", "example": `_e.scrollToTop()`},
+				{"name": "getUuidv4", "description": "Generates a random UUID", "example": `alert(_e.getUuidv4())`},
+				{"name": "isTabInView", "description": "Detects whether the user is focused on current tab", "example": `alert(_e.isTabInView())`},
+				{"name": "isAppleDevice", "description": "Detects apple device", "example": `alert(_e.isAppleDevice())`},
+				{"name": "isMobileDevice", "description": "Detects mobile device", "example": `alert(_e.isMobileDevice())`},
+				{"name": "getTypeOf", "description": "Same thing as typeof, but gets true type of a variable", "example": `console.log(_e.getTypeOf(''));
 // string
 console.log(_e.getTypeOf(0));
 // number
@@ -670,97 +126,39 @@ console.log(_e.getTypeOf(0));
 // number
 console.log(_e.getTypeOf(() => {}));
 // function
-</pre
-          >
-        </code>
-      </div>
+`},
+				{"name": "truncateString", "description": "Truncates a string", "example": `alert(_e.truncateString('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 50)`},
+				{"name": "redirect", "description": "Redirects to a page", "example": `_e.redirect('https://google.com')`},
+				{"name": "ajaxLoad", "description": "Loads a div via ajax using innerHTML. <div id='d1'></div>", "example": `_e.ajaxLoad(document.getElementById('d1'), 'ajax.html')`},
+				{"name": "getHash", "description": "Gets the current page's hash", "example": `alert(_e.getHash())`},
+				{"name": "setHash", "description": "Sets the current page's hash to a value", "example": `_e.setHash('#/test/hash/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20')`},
+				{"name": "pushState", "description": "Sorthand for history.pushState()", "example": `_e.pushState('/test.html')`},
+				{"name": "changeFavicon", "description": "Changes the browser favicon", "example": `_e.changeFavicon('https://cdn.pixabay.com/photo/2015/12/11/11/43/google-1088004_640.png')`},
+				{"name": "addKeybind", "description": "Adds a custom keybind", "example": `_e.addKeybind(191, function() {
+  alert(1)
+})`},
 
-      <div class="section">
-        <h3>Truncate String</h3>
-        <p>Truncate a string</p>
-        <div id="d9">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-        <button
-          onclick="var d=document.getElementById('d9');d.innerHTML = _e.truncateString(d.innerHTML, 50)"
-        >
-          Try me!
-        </button>
-        <code class="prettyprint">
-          <pre>
-var d = document.getElementById('d9');
-d.innerHTML = _e.truncateString(d, 50)
-</pre
-          >
-        </code>
-      </div>
-      <div class="section">
-        <h3>Redirect</h3>
-        <p>Redirects to a different page</p>
-        <button onclick="_e.redirect('https://google.com')">Try me!</button>
-        <code class="prettyprint">
-          <pre>_e.redirect('https://google.com')</pre>
-        </code>
-      </div>
 
-      <div class="section">
-        <h3>AJAX load</h3>
-        <p>Loads a div via ajax. Uses innerHTML to show result in div</p>
-        <div id="d10"></div>
-        <button
-          onclick="_e.ajaxLoad(document.getElementById('d10'), 'ajax.html')"
-        >
-          Try me!
-        </button>
-        <code class="prettyprint">
-          <pre>_e.redirect('https://google.com')</pre>
-        </code>
-      </div>
-
-      <div class="section">
-        <h3>getHash</h3>
-        <p>Gets hash in URL</p>
-        <a href="#/test-hash">Click me to change the url hash</a><br />
-        <button onclick="alert(_e.getHash())">Try me!</button>
-        <code class="prettyprint"><pre>_e.getHash()</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>setHash</h3>
-        <p>Sets hash in URL</p>
-        <a href="#/test-hash">Click me to change the url hash</a><br />
-        <button onclick="_e.setHash('#/setHash')">Try me!</button>
-        <code class="prettyprint"><pre>_e.setHash()</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>pushState</h3>
-        <p>Pushes state</p>
-        <button onclick="_e.pushState('test.html')">Try me!</button>
-        <code class="prettyprint"><pre>_e.getHash()</pre></code>
-      </div>
-
-      <div class="section">
-        <h3>addKeybind</h3>
-        <p>Executes a function on key press</p>
-        <code class="prettyprint">
-          <pre>
-_e.addKeybind(191, function() {
-	alert(1)
-})</pre
-          >
-        </code>
-      </div>
-    </div>
-
-    <script src="essentials.js"></script>
-    <script>
+			];
+			data.forEach(e => {
+				document.getElementById("main").innerHTML += `
+				 <li>
+<div class="collapsible-header waves-effect"><b>${e.name}</b> - ${e.description} <i class="material-icons right" style="vertical-align:middle;margin-left: 5px;" onclick="_e.copyText('${e.name}');alert('Copied!')">content_copy</i></div>
+      <div class="collapsible-body">
+			<p>${e.description}</p><pre class="prettyprint" onclick="_e.copyText(this.innerText)"><code>${e.example}
+</code></pre></div>
+    </li>
+`
+PR.prettyPrint();
+			})
+			$('.collapsible').collapsible({
+				accordion: false
+			})
+			window.addEventListener("load", function() {
+				document.body.querySelectorAll(".collapsible-header").forEach(el => {
+				el.click()
+			})
+			})
       _e.addKeybind(191, function () {
         document.getElementById("search").focus();
       });
@@ -769,7 +167,7 @@ _e.addKeybind(191, function() {
       $(document).ready(function () {
         $("#search").on("keyup", function () {
           var value = $(this).val().toLowerCase();
-          $(".container .section").filter(function () {
+          $("ul li").filter(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
           });
         });
@@ -782,15 +180,9 @@ _e.addKeybind(191, function() {
           document.documentElement.scrollTop > 180 ||
           document.body.scrollTop > 180
         ) {
-          document.getElementById("nav").style.boxShadow = "0 0 10px #eee";
           document.getElementById("nav").style.background = "#303030";
-          document.getElementById("Settings").style.opacity = "1";
-          document.getElementById("Settings").style.marginLeft = "";
         } else {
           document.getElementById("nav").style.background = "#212121";
-          document.getElementById("nav").style.boxShadow = "none";
-          document.getElementById("Settings").style.marginLeft = "-10px";
-          document.getElementById("Settings").style.opacity = "0";
         }
       }
       scrollFunction();
